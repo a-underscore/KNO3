@@ -1,0 +1,12 @@
+[package]
+name = "kno3"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+gdnative = "0.10.0"
+noise = "0.7.0"
+rand = "0.8.5"
