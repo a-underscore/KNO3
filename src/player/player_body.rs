@@ -35,10 +35,10 @@ impl PlayerBody {
 
         if input.is_action_pressed("player_right", false) {
             self.velocity.x = 10.0;
-        }
-
-        if input.is_action_pressed("player_left", false) {
-            self.velocity.x = 10.0;
+        } else if input.is_action_pressed("player_left", false) {
+            self.velocity.x = -10.0;
+        } else {
+            self.velocity.x = 0.0;
         }
 
         if input.is_action_just_pressed("player_jump", false) && owner.is_on_floor() {
