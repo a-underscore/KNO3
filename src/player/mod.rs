@@ -1,2 +1,2 @@
 pub mod player_body;
-pub mod player_sprite;
+pub mod player_cs;
