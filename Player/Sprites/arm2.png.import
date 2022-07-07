@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/arm2.png-d544352027c36df5c287650918d77a47.image"
+
+[deps]
+
+source_file="res://Player/Sprites/arm2.png"
+dest_files=[ "res://.import/arm2.png-d544352027c36df5c287650918d77a47.image" ]
+
+[params]
+

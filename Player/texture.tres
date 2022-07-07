@@ -11,7 +11,7 @@ data = {
 
 [resource]
 flags = 3
-lossy_quality = 0.0
+lossy_quality = 1.0
 flags = 3
 image = SubResource( 1 )
 size = Vector2( 64, 64 )

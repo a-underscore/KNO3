@@ -11,7 +11,7 @@ impl PlayerCS {
     }
 
     #[export]
-    fn _physics_process(&mut self, owner: &CollisionShape2D, _delta: f64) {
+    fn _process(&mut self, owner: &CollisionShape2D, _delta: f64) {
         let viewport = unsafe { owner.get_viewport().unwrap().assume_safe() };
         let flip_point = viewport.size().x / 2.0;
         let mouse_position = viewport.get_mouse_position();

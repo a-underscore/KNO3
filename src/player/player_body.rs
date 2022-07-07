@@ -42,9 +42,9 @@ impl PlayerBody {
         }
 
         if input.is_action_just_pressed("player_jump", false) && owner.is_on_floor() {
-            self.velocity.y = -10.0;
+            self.velocity.y = -20.0;
         } else if input.is_action_pressed("player_jump", false) && self.velocity.y < 1.0 {
-            self.velocity.y += 0.5;
+            self.velocity.y += 2.0;
         } else {
             self.velocity.y = 9.8;
         }
