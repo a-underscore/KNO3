@@ -1,12 +1,11 @@
-pub mod player;
+mod bullet;
+mod player;
 
 use gdnative::prelude::*;
-use player::{player_arms::PlayerArms, player_body::PlayerBody, player_cs::PlayerCS};
 
 fn init(handle: InitHandle) {
-    handle.add_class::<PlayerBody>();
-    handle.add_class::<PlayerCS>();
-    handle.add_class::<PlayerArms>();
+    bullet::init(&handle);
+    player::init(&handle);
 }
 
 godot_init!(init);

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/gun.png-dae16e9ddb696ad2ef9702d1c0e8ace7.image"
+
+[deps]
+
+source_file="res://Player/Sprites/gun.png"
+dest_files=[ "res://.import/gun.png-dae16e9ddb696ad2ef9702d1c0e8ace7.image" ]
+
+[params]
+

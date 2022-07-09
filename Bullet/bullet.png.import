@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/bullet.png-661b8c265bf8c2e32d8718aef7609a30.image"
+
+[deps]
+
+source_file="res://Bullet/bullet.png"
+dest_files=[ "res://.import/bullet.png-661b8c265bf8c2e32d8718aef7609a30.image" ]
+
+[params]
+

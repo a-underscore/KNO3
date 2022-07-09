@@ -1,4 +1,4 @@
-use gdnative::{api::KinematicBody2D, prelude::*};
+use gdnative::prelude::*;
 
 const VELOCITY_SCALE: f32 = 100.0;
 
@@ -22,7 +22,7 @@ impl PlayerBody {
 
         owner.move_and_slide(
             self.velocity * VELOCITY_SCALE,
-            Vector2::new(0.0, -1.0),
+            Vector2::UP,
             false,
             4,
             0.785398,
