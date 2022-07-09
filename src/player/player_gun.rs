@@ -6,7 +6,7 @@ use std::{
     time::{Duration, Instant},
 };
 
-const FIRE_TIME: Duration = Duration::from_millis(500);
+const FIRE_TIME: Duration = Duration::from_millis(50);
 
 #[derive(NativeClass)]
 #[inherit(Sprite)]
@@ -33,6 +33,7 @@ impl PlayerGun {
             .unwrap()
             .cast()
             .unwrap();
+        self.fired_time = Instant::now();
     }
 
     #[export]
