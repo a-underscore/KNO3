@@ -1,16 +1,33 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/arm1_texture.tres" type="Texture" id=1]
 [ext_resource path="res://Player/PlayerArms.gdns" type="Script" id=2]
 [ext_resource path="res://Player/PlayerBody.gdns" type="Script" id=3]
-[ext_resource path="res://Player/texture.tres" type="Texture" id=4]
+[ext_resource path="res://Player/Sprites/texture.tres" type="Texture" id=4]
 [ext_resource path="res://Player/PlayerCS.gdns" type="Script" id=5]
 [ext_resource path="res://Player/arm2_texture.tres" type="Texture" id=6]
 [ext_resource path="res://Player/gun.tres" type="Texture" id=7]
 [ext_resource path="res://Player/PlayerGun.gdns" type="Script" id=8]
+[ext_resource path="res://Player/Sprites/Running/running2.tres" type="Texture" id=9]
+[ext_resource path="res://Player/Sprites/Running/running3.tres" type="Texture" id=10]
+[ext_resource path="res://Player/Sprites/Running/running4.tres" type="Texture" id=11]
+[ext_resource path="res://Player/Sprites/Running/running1.tres" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.00011, 24.5 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "running",
+"speed": 10.0
+} ]
 
 [node name="PlayerBody" type="KinematicBody2D"]
 position = Vector2( 0, -100 )
@@ -26,11 +43,13 @@ rotation = -3.14159
 shape = SubResource( 1 )
 script = ExtResource( 5 )
 
-[node name="PlayerSprite" type="Sprite" parent="PlayerCS"]
+[node name="PlayerSprite" type="AnimatedSprite" parent="PlayerCS"]
 position = Vector2( 3, 0.5 )
 rotation = 2.27374e-13
 z_index = -1
-texture = ExtResource( 4 )
+frames = SubResource( 2 )
+animation = "running"
+playing = true
 
 [node name="PlayerArms" type="Node2D" parent="PlayerCS"]
 position = Vector2( 3, -6 )

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/running3.png-c19d1be40abc57d125d46b77216e6981.image"
+
+[deps]
+
+source_file="res://Player/Sprites/Running/running3.png"
+dest_files=[ "res://.import/running3.png-c19d1be40abc57d125d46b77216e6981.image" ]
+
+[params]
+
