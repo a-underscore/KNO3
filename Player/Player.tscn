@@ -48,7 +48,6 @@ position = Vector2( 3, 0.5 )
 rotation = 2.27374e-13
 z_index = -1
 frames = SubResource( 2 )
-animation = "running"
 playing = true
 
 [node name="PlayerArms" type="Node2D" parent="PlayerCS"]

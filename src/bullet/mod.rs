@@ -1,4 +1,3 @@
-#[allow(non_snake_case)]
 pub mod bullet;
 
 pub use bullet::Bullet;

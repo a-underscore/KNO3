@@ -1,4 +1,5 @@
 mod bullet;
+mod map;
 mod player;
 
 use gdnative::prelude::*;
@@ -7,6 +8,7 @@ pub const GRAVITY: f32 = 9.8;
 
 fn init(handle: InitHandle) {
     bullet::init(&handle);
+    map::init(&handle);
     player::init(&handle);
 }
 

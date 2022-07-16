@@ -1,14 +1,15 @@
 use crate::GRAVITY;
-use gdnative::{api::AnimatedSprite, prelude::*};
+use gdnative::{
+    api::{AnimatedSprite, CollisionShape2D},
+    prelude::*,
+};
 use std::time::{Duration, Instant};
 
-const DEFAULT_ANIM: &str = "default";
-const RUNNING_ANIM: &str = "running";
 const VELOCITY_SCALE: f32 = 100.0;
 const MOVE_SPEED: Vector2 = Vector2::new(10.0, 20.0);
 const JUMP_DECAY: f32 = 1.5;
-const DASH_MODIFIER: f32 = 15.0;
-const DASH_TIME: Duration = Duration::from_secs(1);
+const DASH_MODIFIER: f32 = 10.0;
+const DASH_TIME: Duration = Duration::from_millis(500);
 
 #[derive(NativeClass)]
 #[inherit(KinematicBody2D)]
@@ -24,11 +25,6 @@ impl PlayerBody {
             velocity: Vector2::ZERO,
             dash_time: Instant::now(),
         }
-    }
-
-    #[export]
-    fn _ready(&mut self, _owner: &KinematicBody2D) {
-        self.dash_time = Instant::now();
     }
 
     #[export]
@@ -51,17 +47,15 @@ impl PlayerBody {
         if input.is_action_pressed("player_right", false) {
             self.velocity.x = MOVE_SPEED.x;
 
-            self.set_animation(owner, &RUNNING_ANIM.to_string());
-            self.attempt_dash(&input, 1.0);
+            self.set_animation(owner, &"running".to_string());
         } else if input.is_action_pressed("player_left", false) {
             self.velocity.x = -MOVE_SPEED.x;
 
-            self.set_animation(owner, &RUNNING_ANIM.to_string());
-            self.attempt_dash(&input, -1.0);
+            self.set_animation(owner, &"running".to_string());
         } else {
             self.velocity.x = 0.0;
 
-            self.set_animation(owner, &DEFAULT_ANIM.to_string());
+            self.set_animation(owner, &"default".to_string());
         }
 
         if input.is_action_just_pressed("player_jump", false) && owner.is_on_floor() {
@@ -71,13 +65,16 @@ impl PlayerBody {
         } else {
             self.velocity.y = GRAVITY;
         }
-    }
 
-    fn attempt_dash(&mut self, input: &Input, modifier: f32) {
         if input.is_action_just_pressed("player_dash", false)
             && Instant::now().duration_since(self.dash_time) >= DASH_TIME
         {
-            self.velocity.x += DASH_MODIFIER * MOVE_SPEED.x * modifier;
+            let cs_scale = unsafe { owner.get_node_as::<CollisionShape2D>("./PlayerCS").unwrap() }
+                .get_transform()
+                .scale()
+                .y;
+
+            self.velocity.x += DASH_MODIFIER * MOVE_SPEED.x * cs_scale;
             self.dash_time = Instant::now();
         }
     }
