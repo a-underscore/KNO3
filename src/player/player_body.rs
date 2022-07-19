@@ -16,6 +16,7 @@ const DASH_TIME: Duration = Duration::from_millis(500);
 pub struct PlayerBody {
     velocity: Vector2,
     dash_time: Instant,
+    jump_time: Instant,
 }
 
 #[methods]
@@ -24,6 +25,7 @@ impl PlayerBody {
         Self {
             velocity: Vector2::ZERO,
             dash_time: Instant::now(),
+            jump_time: Instant::now(),
         }
     }
 
@@ -60,7 +62,10 @@ impl PlayerBody {
 
         if input.is_action_just_pressed("player_jump", false) && owner.is_on_floor() {
             self.velocity.y = -MOVE_SPEED.y;
-        } else if input.is_action_pressed("player_jump", false) && self.velocity.y < 1.0 {
+            self.jump_time = Instant::now();
+        } else if input.is_action_pressed("player_jump", false)
+            && Instant::now().duration_since(self.jump_time) <= Duration::from_millis(500)
+        {
             self.velocity.y += JUMP_DECAY;
         } else {
             self.velocity.y = GRAVITY;

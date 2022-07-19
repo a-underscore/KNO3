@@ -8,4 +8,5 @@ crate-type = ["cdylib"]
 
 [dependencies]
 gdnative = "0.10.0"
+lerp = "0.4.0"
 rand = "0.8.5"
