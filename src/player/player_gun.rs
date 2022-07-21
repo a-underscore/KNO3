@@ -29,7 +29,7 @@ impl PlayerGun {
         let loader = ResourceLoader::godot_singleton();
 
         self.bullet = loader
-            .load("res://Bullet/Bullet.tscn", "", false)
+            .load("res://Bullet/Bullet.tscn", "PackedScene", false)
             .unwrap()
             .cast()
             .unwrap();

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/tiles.png-e3d6f96cb9e9706c3d2cddb5ff14678b.image"
+
+[deps]
+
+source_file="res://CurrentArea/tiles.png"
+dest_files=[ "res://.import/tiles.png-e3d6f96cb9e9706c3d2cddb5ff14678b.image" ]
+
+[params]
+

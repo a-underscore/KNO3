@@ -74,7 +74,8 @@ impl PlayerBody {
         if input.is_action_just_pressed("player_dash", false)
             && Instant::now().duration_since(self.dash_time) >= DASH_TIME
         {
-            let cs_scale = unsafe { owner.get_node_as::<CollisionShape2D>("./PlayerCS").unwrap() }
+            let cs_scale = unsafe { owner.get_node_as::<CollisionShape2D>("./PlayerCS") }
+                .unwrap()
                 .get_transform()
                 .scale()
                 .y;
@@ -85,11 +86,8 @@ impl PlayerBody {
     }
 
     fn set_animation(&self, owner: &KinematicBody2D, animation: &String) {
-        unsafe {
-            owner
-                .get_node_as::<AnimatedSprite>("./PlayerCS/PlayerSprite")
-                .unwrap()
-                .set_animation(animation)
-        }
+        unsafe { owner.get_node_as::<AnimatedSprite>("./PlayerCS/PlayerSprite") }
+            .unwrap()
+            .set_animation(animation);
     }
 }
