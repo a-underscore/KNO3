@@ -168,6 +168,7 @@ impl CurrentArea {
             .counts()
             .into_iter()
             .filter_map(|(k, v)| if v == count { Some(*k) } else { None })
+            .dedup()
             .collect()
     }
 }
