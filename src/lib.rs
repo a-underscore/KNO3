@@ -4,7 +4,7 @@ mod player;
 
 use gdnative::prelude::*;
 
-pub const GRAVITY: f32 = 9.8;
+pub const GRAVITY: f32 = 9.8 / 10.0;
 
 fn init(handle: InitHandle) {
     bullet::init(&handle);

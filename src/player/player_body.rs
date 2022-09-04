@@ -6,10 +6,11 @@ use gdnative::{
 use std::time::{Duration, Instant};
 
 const VELOCITY_SCALE: f32 = 100.0;
-const MOVE_SPEED: Vector2 = Vector2::new(10.0, 20.0);
-const JUMP_DECAY: f32 = 1.5;
+const MOVE_SPEED: Vector2 = Vector2::new(10.0, 5.0);
+const JUMP_DECAY: f32 = 2.5;
 const DASH_MODIFIER: f32 = 10.0;
 const DASH_TIME: Duration = Duration::from_millis(500);
+const JUMP_TIME: Duration = Duration::from_millis(100);
 
 #[derive(NativeClass)]
 #[inherit(KinematicBody2D)]
@@ -60,16 +61,24 @@ impl PlayerBody {
             self.set_animation(owner, &"default".to_string());
         }
 
-        if input.is_action_just_pressed("player_jump", false) && owner.is_on_floor() {
-            self.velocity.y = -MOVE_SPEED.y;
-            self.jump_time = Instant::now();
-        } else if input.is_action_pressed("player_jump", false)
-            && Instant::now().duration_since(self.jump_time) <= Duration::from_millis(500)
-        {
-            self.velocity.y += JUMP_DECAY;
+        if owner.is_on_ceiling() {
+            self.velocity.y *= -1.0;
         } else {
-            self.velocity.y = GRAVITY;
+            if owner.is_on_floor() {
+                if input.is_action_just_pressed("player_jump", false) {
+                    self.velocity.y = -MOVE_SPEED.y;
+                    self.jump_time = Instant::now();
+                } else {
+                    self.velocity.y = 0.0;
+                }
+            } else if input.is_action_pressed("player_jump", false)
+                && Instant::now().duration_since(self.jump_time) <= JUMP_TIME
+            {
+                self.velocity.y -= JUMP_DECAY;
+            }
         }
+
+        self.velocity.y += GRAVITY;
 
         if input.is_action_just_pressed("player_dash", false)
             && Instant::now().duration_since(self.dash_time) >= DASH_TIME
