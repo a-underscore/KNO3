@@ -29,8 +29,8 @@ impl CurrentArea {
         }
     }
 
-    #[export]
-    fn _ready(&self, owner: &Node2D) {
+    #[method]
+    fn _ready(&self, #[base] owner: &Node2D) {
         let rooms = unsafe {
             ResourceLoader::godot_singleton()
                 .load("res://Rooms/Area1/Area1.tscn", "PackedScene", false)

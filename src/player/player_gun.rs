@@ -24,8 +24,8 @@ impl PlayerGun {
         }
     }
 
-    #[export]
-    fn _ready(&mut self, _owner: &Sprite) {
+    #[method]
+    fn _ready(&mut self, #[base] _owner: &Sprite) {
         let loader = ResourceLoader::godot_singleton();
 
         self.bullet = loader
@@ -36,8 +36,8 @@ impl PlayerGun {
         self.fired_time = Instant::now();
     }
 
-    #[export]
-    fn _process(&mut self, owner: &Sprite, _delta: f64) {
+    #[method]
+    fn _process(&mut self, #[base] owner: &Sprite, _delta: f64) {
         let input = Input::godot_singleton();
 
         if Instant::now().duration_since(self.fired_time) >= FIRE_TIME {

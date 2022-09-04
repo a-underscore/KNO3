@@ -30,8 +30,8 @@ impl PlayerBody {
         }
     }
 
-    #[export]
-    fn _physics_process(&mut self, owner: &KinematicBody2D, _delta: f64) {
+    #[method]
+    fn _physics_process(&mut self, #[base] owner: &KinematicBody2D, _delta: f64) {
         self.velocity_from_input(owner);
 
         owner.move_and_slide(

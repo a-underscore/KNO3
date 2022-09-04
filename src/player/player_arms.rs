@@ -11,8 +11,8 @@ impl PlayerArms {
         Self
     }
 
-    #[export]
-    fn _process(&mut self, owner: &Node2D, _delta: f64) {
+    #[method]
+    fn _process(&mut self, #[base] owner: &Node2D, _delta: f64) {
         let mouse_pos = owner.get_global_mouse_position();
 
         owner.look_at(mouse_pos);

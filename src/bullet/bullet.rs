@@ -18,20 +18,20 @@ impl Bullet {
         }
     }
 
-    #[export]
-    fn _ready(&mut self, _owner: &KinematicBody2D) {
+    #[method]
+    fn _ready(&mut self, #[base] _owner: &KinematicBody2D) {
         self.instance_time = Instant::now();
     }
 
-    #[export]
-    fn _process(&self, owner: &KinematicBody2D, _delta: f64) {
+    #[method]
+    fn _process(&self, #[base] owner: &KinematicBody2D, _delta: f64) {
         if Instant::now().duration_since(self.instance_time) >= LIFE_TIME {
             unsafe { owner.assume_unique() }.queue_free();
         }
     }
 
-    #[export]
-    fn _physics_process(&mut self, owner: &KinematicBody2D, delta: f64) {
+    #[method]
+    fn _physics_process(&mut self, #[base] owner: &KinematicBody2D, delta: f64) {
         let collide = owner.move_and_collide(
             Vector2::new(-1.0, 0.0).rotated(owner.rotation() as f32)
                 * VELOCITY_SCALE
